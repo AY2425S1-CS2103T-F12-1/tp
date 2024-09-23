@@ -6,6 +6,14 @@ import static java.util.Objects.requireNonNull;
  */
 public class Remark {
     public final String value;
+
+    /**
+     * Constructs a {@code Remark} object with the specified remark.
+     *
+     * @param remark The remark to be associated with this {@code Remark} object.
+     *               It must not be null.
+     * @throws NullPointerException if the provided {@code remark} is null.
+     */
     public Remark(String remark) {
         requireNonNull(remark);
         value = remark;
