@@ -13,6 +13,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Remark;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -111,7 +112,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     * Parses a {@code String tags} into a {@code Set<Tag>}.
      */
     public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
         requireNonNull(tags);
@@ -120,5 +121,14 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses {@code String remark} into a {@code Remark}.
+     */
+    public static Remark parseRemark(String value) {
+        requireNonNull(value);
+        final Remark remark = new Remark(value);
+        return remark;
     }
 }
