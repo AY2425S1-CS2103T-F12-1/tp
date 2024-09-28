@@ -8,6 +8,7 @@
         "about-us": "About Us",
         "project-team": "Project team",
         "mao-xiongkai": "Mao Xiongkai",
+        "eline-ngu-xiang-ee": "Eline Ngu Xiang Ee",
         "huang-jiaxi": "Huang Jiaxi",
         "zhu-tianyi": "Zhu Tianyi",
         "tan-wei-seng": "Tan Wei Seng"
@@ -132,6 +133,12 @@
       "headings": {
         "addressbook-level-3": "AddressBook Level-3"
       },
+      "headingKeywords": {}
+    },
+    {
+      "src": "team/elinengu.md",
+      "title": "Eline's Project Portfolio Page",
+      "headings": {},
       "headingKeywords": {}
     },
     {
