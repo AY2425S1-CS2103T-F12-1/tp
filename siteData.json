@@ -7,6 +7,7 @@
       "headings": {
         "about-us": "About Us",
         "project-team": "Project team",
+        "mao-xiongkai": "Mao Xiongkai",
         "huang-jiaxi": "Huang Jiaxi",
         "zhu-tianyi": "Zhu Tianyi",
         "tan-wei-seng": "Tan Wei Seng"
@@ -144,6 +145,14 @@
     {
       "src": "team/lithops-zty.md",
       "title": "Tianyi's Project Portfolio Page",
+      "headings": {
+        "project-addressbook-level-3": "Project: AddressBook Level 3"
+      },
+      "headingKeywords": {}
+    },
+    {
+      "src": "team/maoxiongkai.md",
+      "title": "Mao Xiongkai's Project Portfolio Page",
       "headings": {
         "project-addressbook-level-3": "Project: AddressBook Level 3"
       },
