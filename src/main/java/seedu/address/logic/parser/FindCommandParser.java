@@ -3,13 +3,18 @@ package seedu.address.logic.parser;
 import static seedu.address.logic.Messages.MESSAGE_EMPTY_FIND_KEYWORD;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.ParserUtil.arePrefixesPresent;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.ModuleContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.Person;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -25,18 +30,27 @@ public class FindCommandParser implements Parser<FindCommand> {
     public FindCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME);
 
-        // for this command, NAME_PREFIX is mandatory; preamble is not allowed
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME) || !argMultimap.getPreamble().isEmpty()) {
+        // for this command, NAME_PREFIX or MODULE_PREFIX is mandatory; preamble is not allowed
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_MODULE) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
         List<String> nameKeywords = argMultimap.getAllValues(PREFIX_NAME);
+        List<String> moduleKeywords = argMultimap.getAllValues(PREFIX_MODULE);
 
         // all keywords must be non-empty and contain no whitespace
-        if (nameKeywords.stream().anyMatch(String::isBlank)) {
+        if (nameKeywords.stream().anyMatch(String::isBlank) || moduleKeywords.stream().anyMatch(String::isBlank)) {
             throw new ParseException(MESSAGE_EMPTY_FIND_KEYWORD);
         }
 
-        return new FindCommand(new NameContainsKeywordsPredicate(nameKeywords));
+        List<Predicate<Person>> predicates = new ArrayList<>();
+        if (!nameKeywords.isEmpty()) {
+            predicates.add(new NameContainsKeywordsPredicate(nameKeywords));
+        }
+        if (!moduleKeywords.isEmpty()) {
+            predicates.add(new ModuleContainsKeywordsPredicate(moduleKeywords));
+        }
+
+        return new FindCommand(predicates);
     }
 }
