@@ -5,10 +5,12 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.CARL;
+import static seedu.address.testutil.TypicalPersons.DANIEL;
 import static seedu.address.testutil.TypicalPersons.ELLE;
 import static seedu.address.testutil.TypicalPersons.FIONA;
+import static seedu.address.testutil.TypicalPersons.GEORGE;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.ArrayList;
@@ -138,15 +140,15 @@ public class FindCommandTest {
 
     @Test
     public void execute_multipleModuleRoleKeywords_multiplePersonsFound() throws ParseException {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2, "\"CS1101S-Tutor\"");
-        ModuleRoleContainsKeywordsPredicate moduleRolePredicate = prepareModuleRolePredicate("CS1101S-ta");
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 6, "\"CS1101S-Student\"");
+        ModuleRoleContainsKeywordsPredicate moduleRolePredicate = prepareModuleRolePredicate("CS1101S");
         List<Predicate<Person>> predicates = new ArrayList<>();
         predicates.add(moduleRolePredicate);
 
         FindCommand command = new FindCommand(predicates);
         expectedModel.updateFilteredPersonList(moduleRolePredicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(BENSON, CARL), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(ALICE, CARL, DANIEL, ELLE, FIONA, GEORGE), model.getFilteredPersonList());
     }
 
     @Test
