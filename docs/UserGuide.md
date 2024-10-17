@@ -93,8 +93,8 @@ A person is considered a duplicate if another person in the address book has the
 </box>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/John Doe p/98765432 e/johnd@example.com r/ma1522`
+* `add n/Betsy Crowe t/friend e/betsycrowe@example.com r/cs1101s-prof a/Newgate Prison p/1234567 t/criminal`
 
 ### Listing all persons : `list`
 
