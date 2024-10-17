@@ -4,7 +4,7 @@ import static seedu.address.logic.Messages.MESSAGE_EMPTY_FIND_KEYWORD;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.ParserUtil.arePrefixesPresent;
+import static seedu.address.logic.parser.ParserUtil.areAnyPrefixesPresent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +32,7 @@ public class FindCommandParser implements Parser<FindCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_MODULE);
 
         // for this command, NAME_PREFIX or MODULE_PREFIX is mandatory; preamble is not allowed
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_MODULE) || !argMultimap.getPreamble().isEmpty()) {
+        if (!areAnyPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_MODULE) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
