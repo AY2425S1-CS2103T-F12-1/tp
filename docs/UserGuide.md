@@ -79,7 +79,7 @@ Format: `help`
 
 Adds a person to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL [a/ADDRESS] [t/TAG]…​`
+Format: `add n/NAME p/PHONE e/EMAIL (r/MODULECODE-ROLETYPE)+ [a/ADDRESS] [t/TAG]…​`
 
 <box type="tip" seamless>
 
