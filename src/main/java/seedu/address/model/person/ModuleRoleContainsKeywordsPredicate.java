@@ -17,6 +17,11 @@ public class ModuleRoleContainsKeywordsPredicate implements Predicate<Person> {
     }
 
 
+    /**
+     * Test if keywords contained in person's module role map.
+     * @param person the input argument
+     * @return
+     */
     public boolean test(Person person) {
         ModuleRoleMap personModuleRoleMap = person.getModuleRoleMap();
         return moduleRoleMapKeywords.getRoles().entrySet().stream()
@@ -45,7 +50,7 @@ public class ModuleRoleContainsKeywordsPredicate implements Predicate<Person> {
     /**
      * Get module-role pairs of moduleRoleMapToSearch.
      *
-     * @return List<String> of module-role pairs.
+     * @return a List of string of module-role pairs.
      */
     public List<String> getModuleRolePairs() {
         return moduleRoleMapKeywords.toModuleRolePairs();

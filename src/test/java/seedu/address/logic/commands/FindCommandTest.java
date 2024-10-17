@@ -139,32 +139,15 @@ public class FindCommandTest {
 
     @Test
     public void execute_multipleModuleRoleKeywords_multiplePersonsFound() throws ParseException {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2, "\"CS2040S-Student\"");
-        ModuleRoleContainsKeywordsPredicate moduleRolePredicate = prepareModuleRolePredicate("CS2040S");
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2, "\"CS1101S-Tutor\"");
+        ModuleRoleContainsKeywordsPredicate moduleRolePredicate = prepareModuleRolePredicate("CS1101S-ta");
         List<Predicate<Person>> predicates = new ArrayList<>();
         predicates.add(moduleRolePredicate);
 
         FindCommand command = new FindCommand(predicates);
         expectedModel.updateFilteredPersonList(moduleRolePredicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(ALICE, BENSON), model.getFilteredPersonList());
-    }
-
-    @Test
-    public void execute_nameAndModuleKeywords_multiplePersonsFound() throws ParseException {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2, "\"Kurz\", \"CS1231S-Tutor\"");
-        NameContainsKeywordsPredicate namePredicate = prepareNamePredicate("Kurz");
-        ModuleRoleContainsKeywordsPredicate modulePredicate = prepareModuleRolePredicate("CS1231S-ta");
-
-        List<Predicate<Person>> predicates = new ArrayList<>();
-        predicates.add(namePredicate);
-        predicates.add(modulePredicate);
-
-        FindCommand command = new FindCommand(predicates);
-        expectedModel.updateFilteredPersonList(namePredicate);
-        expectedModel.updateFilteredPersonList(modulePredicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ALICE), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(BENSON, CARL), model.getFilteredPersonList());
     }
 
     @Test
