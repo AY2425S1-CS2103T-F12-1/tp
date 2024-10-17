@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.BENSON;
 import static seedu.address.testutil.TypicalPersons.CARL;
 import static seedu.address.testutil.TypicalPersons.ELLE;
 import static seedu.address.testutil.TypicalPersons.FIONA;
@@ -123,7 +125,7 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_multipleKeywords_multiplePersonsFound() {
+    public void execute_multipleNameKeywords_multiplePersonsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3, "\"Kurz\", \"Elle\", \"Kunz\"");
         NameContainsKeywordsPredicate namePredicate = prepareNamePredicate("Kurz Elle Kunz");
         List<Predicate<Person>> predicates = new ArrayList<>();
@@ -136,19 +138,33 @@ public class FindCommandTest {
     }
 
     @Test
+    public void execute_multipleModuleRoleKeywords_multiplePersonsFound() throws ParseException {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2, "\"CS2040S-Student\"");
+        ModuleRoleContainsKeywordsPredicate moduleRolePredicate = prepareModuleRolePredicate("CS2040S");
+        List<Predicate<Person>> predicates = new ArrayList<>();
+        predicates.add(moduleRolePredicate);
+
+        FindCommand command = new FindCommand(predicates);
+        expectedModel.updateFilteredPersonList(moduleRolePredicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(ALICE, BENSON), model.getFilteredPersonList());
+    }
+
+    @Test
     public void execute_nameAndModuleKeywords_multiplePersonsFound() throws ParseException {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2, "\"Kurz\", \"CS2103T\"");
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2, "\"Kurz\", \"CS1231S-Tutor\"");
         NameContainsKeywordsPredicate namePredicate = prepareNamePredicate("Kurz");
-        ModuleRoleContainsKeywordsPredicate modulePredicate = prepareModuleRolePredicate("CS2103T");
+        ModuleRoleContainsKeywordsPredicate modulePredicate = prepareModuleRolePredicate("CS1231S-ta");
 
         List<Predicate<Person>> predicates = new ArrayList<>();
         predicates.add(namePredicate);
         predicates.add(modulePredicate);
 
         FindCommand command = new FindCommand(predicates);
-        expectedModel.updateFilteredPersonList(namePredicate.and(modulePredicate));
+        expectedModel.updateFilteredPersonList(namePredicate);
+        expectedModel.updateFilteredPersonList(modulePredicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, FIONA), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(CARL, ALICE), model.getFilteredPersonList());
     }
 
     @Test

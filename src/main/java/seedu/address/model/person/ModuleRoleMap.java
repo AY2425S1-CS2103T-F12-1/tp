@@ -177,9 +177,9 @@ public class ModuleRoleMap {
     }
 
     /**
-     * Converts the ModuleRoleMap back into a List<String> of module-role pairs.
-     * If the role is STUDENT, the module code will be returned without the role.
-     * @return List<String> of module-role pairs.
+     * Converts the ModuleRoleMap back to a list of module-role pairs.
+     *
+     * @return a list of module-role pairs.
      */
     public List<String> toModuleRolePairs() {
         List<String> moduleRolePairs = new ArrayList<>();
