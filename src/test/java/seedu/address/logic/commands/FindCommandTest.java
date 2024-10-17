@@ -18,10 +18,12 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.ModuleContainsKeywordsPredicate;
+import seedu.address.model.person.ModuleRoleContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 
@@ -33,15 +35,15 @@ public class FindCommandTest {
     private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
-    public void equals() {
+    public void equals() throws ParseException {
         NameContainsKeywordsPredicate firstNamePredicate =
                 new NameContainsKeywordsPredicate(Collections.singletonList("first"));
         NameContainsKeywordsPredicate secondNamePredicate =
                 new NameContainsKeywordsPredicate(Collections.singletonList("second"));
-        ModuleContainsKeywordsPredicate firstModulePredicate =
-                new ModuleContainsKeywordsPredicate(Collections.singletonList("CS1010"));
-        ModuleContainsKeywordsPredicate secondModulePredicate =
-                new ModuleContainsKeywordsPredicate(Collections.singletonList("CS2103"));
+        ModuleRoleContainsKeywordsPredicate firstModuleRolePredicate = new ModuleRoleContainsKeywordsPredicate(
+                ParserUtil.parseModuleRolePairs(Collections.singletonList("CS1010")));
+        ModuleRoleContainsKeywordsPredicate secondModuleRolePredicate = new ModuleRoleContainsKeywordsPredicate(
+                ParserUtil.parseModuleRolePairs(Collections.singletonList("CS2103T-prof")));
 
         List<Predicate<Person>> firstNamePredicates = new ArrayList<>();
         firstNamePredicates.add(firstNamePredicate);
@@ -49,67 +51,73 @@ public class FindCommandTest {
         List<Predicate<Person>> secondNamePredicates = new ArrayList<>();
         secondNamePredicates.add(secondNamePredicate);
 
-        List<Predicate<Person>> firstModulePredicates = new ArrayList<>();
-        firstNamePredicates.add(firstModulePredicate);
+        List<Predicate<Person>> firstModuleRolePredicates = new ArrayList<>();
+        firstModuleRolePredicates.add(firstModuleRolePredicate);
 
-        List<Predicate<Person>> secondModulePredicates = new ArrayList<>();
-        secondNamePredicates.add(secondModulePredicate);
+        List<Predicate<Person>> secondModuleRolePredicates = new ArrayList<>();
+        secondModuleRolePredicates.add(secondModuleRolePredicate);
 
-        List<Predicate<Person>> firstNameAndModulePredicates = new ArrayList<>();
-        firstNameAndModulePredicates.add(firstNamePredicate);
-        firstNameAndModulePredicates.add(firstModulePredicate);
+        List<Predicate<Person>> firstNameAndModuleRolePredicates = new ArrayList<>();
+        firstNameAndModuleRolePredicates.add(firstNamePredicate);
+        firstNameAndModuleRolePredicates.add(firstModuleRolePredicate);
 
-        List<Predicate<Person>> secondNameAndModulePredicates = new ArrayList<>();
-        secondNameAndModulePredicates.add(secondNamePredicate);
-        secondNameAndModulePredicates.add(secondModulePredicate);
+        List<Predicate<Person>> secondNameAndModuleRolePredicates = new ArrayList<>();
+        secondNameAndModuleRolePredicates.add(secondNamePredicate);
+        secondNameAndModuleRolePredicates.add(secondModuleRolePredicate);
 
         FindCommand findFirstNameCommand = new FindCommand(firstNamePredicates);
         FindCommand findSecondNameCommand = new FindCommand(secondNamePredicates);
 
-        FindCommand findFirstModuleCommand = new FindCommand(firstModulePredicates);
-        FindCommand findSecondModuleCommand = new FindCommand(secondModulePredicates);
+        FindCommand findFirstModuleRoleCommand = new FindCommand(firstModuleRolePredicates);
+        FindCommand findSecondModuleRoleCommand = new FindCommand(secondModuleRolePredicates);
 
         // Create FindCommand with both name and module predicates
-        FindCommand findFirstNameAndModuleCommand = new FindCommand(firstNameAndModulePredicates);
-        FindCommand findSecondNameAndModuleCommand = new FindCommand(secondNameAndModulePredicates);
+        FindCommand findFirstNameAndModuleRoleCommand = new FindCommand(firstNameAndModuleRolePredicates);
+        FindCommand findSecondNameAndModuleRoleCommand = new FindCommand(secondNameAndModuleRolePredicates);
 
         // same object -> returns true
         assertTrue(findFirstNameCommand.equals(findFirstNameCommand));
-        assertTrue(findFirstModuleCommand.equals(findFirstModuleCommand));
+        assertTrue(findFirstModuleRoleCommand.equals(findFirstModuleRoleCommand));
+        assertTrue(findFirstNameAndModuleRoleCommand.equals(findFirstNameAndModuleRoleCommand));
 
         // same values -> returns true
         FindCommand findFirstNameCommandCopy = new FindCommand(new ArrayList<>(firstNamePredicates));
-        FindCommand findFirstModuleCommandCopy = new FindCommand(new ArrayList<>(firstModulePredicates));
+        FindCommand findFirstModuleRoleCommandCopy = new FindCommand(new ArrayList<>(firstModuleRolePredicates));
         assertTrue(findFirstNameCommand.equals(findFirstNameCommandCopy));
-        assertTrue(findFirstModuleCommand.equals(findFirstModuleCommandCopy));
+        assertTrue(findFirstModuleRoleCommand.equals(findFirstModuleRoleCommandCopy));
 
         // different types -> returns false
         assertFalse(findFirstNameCommand.equals(1));
-        assertFalse(findFirstModuleCommand.equals(1));
+        assertFalse(findFirstModuleRoleCommand.equals(1));
+        assertFalse(findFirstNameAndModuleRoleCommand.equals(1));
 
         // null -> returns false
         assertFalse(findFirstNameCommand.equals(null));
-        assertFalse(findFirstModuleCommand.equals(null));
+        assertFalse(findFirstModuleRoleCommand.equals(null));
+        assertFalse(findFirstNameAndModuleRoleCommand.equals(null));
 
         // different person -> returns false
         assertFalse(findFirstNameCommand.equals(findSecondNameCommand));
 
-        // different module -> returns false
-        assertFalse(findFirstModuleCommand.equals(findSecondModuleCommand));
+        // different module-role -> returns false
+        assertFalse(findFirstModuleRoleCommand.equals(findSecondModuleRoleCommand));
 
-        // different name and module predicates -> returns false
-        assertFalse(findFirstNameAndModuleCommand.equals(findSecondNameAndModuleCommand));
+        // different name and module-role predicates -> returns false
+        assertFalse(findFirstNameAndModuleRoleCommand.equals(findSecondNameAndModuleRoleCommand));
     }
 
     @Test
-    public void execute_zeroKeywords_noPersonFound() {
+    public void execute_zeroKeywords_noPersonFound() throws ParseException {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0, "");
-        NameContainsKeywordsPredicate predicate = prepareNamePredicate(" ");
+        NameContainsKeywordsPredicate namePredicate = prepareNamePredicate(" ");
+        ModuleRoleContainsKeywordsPredicate moduleRolePredicate = prepareModuleRolePredicate(" ");
         List<Predicate<Person>> predicates = new ArrayList<>();
-        predicates.add(predicate);
+        predicates.add(namePredicate);
+        predicates.add(moduleRolePredicate);
 
         FindCommand command = new FindCommand(predicates);
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredPersonList(namePredicate);
+        expectedModel.updateFilteredPersonList(moduleRolePredicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredPersonList());
     }
@@ -128,10 +136,10 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_nameAndModuleKeywords_multiplePersonsFound() {
+    public void execute_nameAndModuleKeywords_multiplePersonsFound() throws ParseException {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2, "\"Kurz\", \"CS2103T\"");
         NameContainsKeywordsPredicate namePredicate = prepareNamePredicate("Kurz");
-        ModuleContainsKeywordsPredicate modulePredicate = prepareModulePredicate("CS2103T");
+        ModuleRoleContainsKeywordsPredicate modulePredicate = prepareModuleRolePredicate("CS2103T");
 
         List<Predicate<Person>> predicates = new ArrayList<>();
         predicates.add(namePredicate);
@@ -144,9 +152,10 @@ public class FindCommandTest {
     }
 
     @Test
-    public void toStringMethod() {
+    public void toStringMethod() throws ParseException {
         NameContainsKeywordsPredicate namePredicate = new NameContainsKeywordsPredicate(Arrays.asList("keyword"));
-        ModuleContainsKeywordsPredicate modulePredicate = new ModuleContainsKeywordsPredicate(Arrays.asList("CS2103T"));
+        ModuleRoleContainsKeywordsPredicate modulePredicate = new ModuleRoleContainsKeywordsPredicate(
+                ParserUtil.parseModuleRolePairs((Arrays.asList("CS2103T"))));
         List<Predicate<Person>> predicates = new ArrayList<>();
         predicates.add(namePredicate);
         predicates.add(modulePredicate);
@@ -166,7 +175,8 @@ public class FindCommandTest {
     /**
      * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
      */
-    private ModuleContainsKeywordsPredicate prepareModulePredicate(String userInput) {
-        return new ModuleContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    private ModuleRoleContainsKeywordsPredicate prepareModuleRolePredicate(String userInput) throws ParseException {
+        return new ModuleRoleContainsKeywordsPredicate(ParserUtil.parseModuleRolePairs(
+                Arrays.asList(userInput.split("\\s+"))));
     }
 }

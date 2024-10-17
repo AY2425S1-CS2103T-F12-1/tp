@@ -12,7 +12,8 @@ import java.util.function.Predicate;
 
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.ModuleContainsKeywordsPredicate;
+import seedu.address.model.person.ModuleRoleContainsKeywordsPredicate;
+import seedu.address.model.person.ModuleRoleMap;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 
@@ -28,7 +29,7 @@ public class FindCommandParser implements Parser<FindCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public FindCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_MODULE);
 
         // for this command, NAME_PREFIX or MODULE_PREFIX is mandatory; preamble is not allowed
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_MODULE) || !argMultimap.getPreamble().isEmpty()) {
@@ -36,19 +37,21 @@ public class FindCommandParser implements Parser<FindCommand> {
         }
 
         List<String> nameKeywords = argMultimap.getAllValues(PREFIX_NAME);
-        List<String> moduleKeywords = argMultimap.getAllValues(PREFIX_MODULE);
+        List<String> moduleRoleKeywords = argMultimap.getAllValues(PREFIX_MODULE);
 
         // all keywords must be non-empty and contain no whitespace
-        if (nameKeywords.stream().anyMatch(String::isBlank) || moduleKeywords.stream().anyMatch(String::isBlank)) {
+        if (nameKeywords.stream().anyMatch(String::isBlank) || moduleRoleKeywords.stream().anyMatch(String::isBlank)) {
             throw new ParseException(MESSAGE_EMPTY_FIND_KEYWORD);
         }
+
+        ModuleRoleMap moduleRoleMapKeywords = ParserUtil.parseModuleRolePairs(moduleRoleKeywords);
 
         List<Predicate<Person>> predicates = new ArrayList<>();
         if (!nameKeywords.isEmpty()) {
             predicates.add(new NameContainsKeywordsPredicate(nameKeywords));
         }
-        if (!moduleKeywords.isEmpty()) {
-            predicates.add(new ModuleContainsKeywordsPredicate(moduleKeywords));
+        if (!moduleRoleKeywords.isEmpty()) {
+            predicates.add(new ModuleRoleContainsKeywordsPredicate(moduleRoleMapKeywords));
         }
 
         return new FindCommand(predicates);

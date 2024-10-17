@@ -28,7 +28,8 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.ModuleContainsKeywordsPredicate;
+import seedu.address.model.person.ModuleRoleContainsKeywordsPredicate;
+import seedu.address.model.person.ModuleRoleMap;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -78,20 +79,22 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_find() throws Exception {
         List<String> nameKeywords = Arrays.asList("foo", "bar", "baz");
-        List<String> moduleKeywords = Arrays.asList("CS2103T", "CS1231S");
+        List<String> moduleRoleKeywords = Arrays.asList("CS2103T", "CS1231S-tutor");
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " "
                         + nameKeywords.stream()
                                 .map(k -> PREFIX_NAME + k)
                                 .collect(Collectors.joining(" "))
                         + " "
-                        + moduleKeywords.stream()
+                        + moduleRoleKeywords.stream()
                         .map(k -> PREFIX_MODULE + k)
                         .collect(Collectors.joining(" "))
         );
 
         NameContainsKeywordsPredicate namePredicate = new NameContainsKeywordsPredicate(nameKeywords);
-        ModuleContainsKeywordsPredicate modulePredicate = new ModuleContainsKeywordsPredicate(moduleKeywords);
+        ModuleRoleMap moduleRoleMapKeywords = ParserUtil.parseModuleRolePairs(moduleRoleKeywords);
+        ModuleRoleContainsKeywordsPredicate modulePredicate =
+                new ModuleRoleContainsKeywordsPredicate(moduleRoleMapKeywords);
         List<Predicate<Person>> expectedPredicates = new ArrayList<>();
         expectedPredicates.add(namePredicate);
         expectedPredicates.add(modulePredicate);

@@ -12,7 +12,8 @@ import java.util.ArrayList;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.FindCommand;
-import seedu.address.model.person.ModuleContainsKeywordsPredicate;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.ModuleRoleContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 
 public class FindCommandParserTest {
@@ -26,41 +27,19 @@ public class FindCommandParserTest {
     }
 
     @Test
-    public void parse_validArgs_returnsFindCommand() {
+    public void parse_validArgs_returnsFindCommand() throws ParseException {
         // no leading and trailing whitespaces
-        FindCommand expectedFindCommand1 =
+        FindCommand expectedFindCommand =
                 new FindCommand(new ArrayList<>(Arrays.asList(
-                        new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob"))
+                        new NameContainsKeywordsPredicate(Arrays.asList("Alice")),
+                        new ModuleRoleContainsKeywordsPredicate(ParserUtil.parseModuleRolePairs(
+                                Arrays.asList("CS2103T")))
                 )));
-        assertParseSuccess(parser, " " + PREFIX_NAME + "Alice " + PREFIX_NAME + "Bob", expectedFindCommand1);
+        assertParseSuccess(parser, " " + PREFIX_NAME + "Alice " + PREFIX_MODULE + "CS2103T", expectedFindCommand);
 
-        // Test with name keywords and multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n " + PREFIX_NAME + "Alice \n \t " + PREFIX_NAME + "Bob  \t",
-                expectedFindCommand1);
-
-        FindCommand expectedFindCommand2 =
-                new FindCommand(new ArrayList<>(Arrays.asList(
-                        new ModuleContainsKeywordsPredicate(Arrays.asList("CS2103T", "CS1101S"))
-                )));
-        assertParseSuccess(parser, " " + PREFIX_MODULE + "CS2103T " + PREFIX_MODULE + "CS1101S",
-                expectedFindCommand2);
-
-        // Test with module keywords and multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n " + PREFIX_MODULE + "CS2103T \n \t " + PREFIX_MODULE + "CS1101S  \t",
-                expectedFindCommand2);
-
-        FindCommand expectedFindCommand3 =
-                new FindCommand(new ArrayList<>(Arrays.asList(
-                        new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")),
-                        new ModuleContainsKeywordsPredicate(Arrays.asList("CS2103", "CS1231"))
-                )));
-
-        assertParseSuccess(parser, " " + PREFIX_NAME + "Alice " + PREFIX_NAME + "Bob "
-                + PREFIX_MODULE + "CS2103 " + PREFIX_MODULE + "CS1231", expectedFindCommand3);
-
-        // Test with both name and module keywords and multiple whitespaces
-        assertParseSuccess(parser, " \n " + PREFIX_NAME + "Alice \n \t " + PREFIX_NAME + "Bob  \t "
-                + PREFIX_MODULE + "CS2103  \n  " + PREFIX_MODULE + "CS1231", expectedFindCommand3);
+        // Test with keywords and multiple whitespaces between keywords
+        assertParseSuccess(parser, " \n " + PREFIX_NAME + "Alice \n \t " + PREFIX_MODULE + "CS2103T  \t",
+                expectedFindCommand);
     }
 
 }

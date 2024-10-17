@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.person.ModuleContainsKeywordsPredicate;
+import seedu.address.model.person.ModuleRoleContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 
@@ -104,8 +104,8 @@ public class FindCommand extends Command {
     private List<String> extractKeywords(Predicate<Person> predicate) {
         if (predicate instanceof NameContainsKeywordsPredicate) {
             return ((NameContainsKeywordsPredicate) predicate).getKeywords();
-        } else if (predicate instanceof ModuleContainsKeywordsPredicate) {
-            return ((ModuleContainsKeywordsPredicate) predicate).getKeywords();
+        } else if (predicate instanceof ModuleRoleContainsKeywordsPredicate) {
+            return ((ModuleRoleContainsKeywordsPredicate) predicate).getModuleRolePairs();
         }
         return Collections.emptyList();
     }

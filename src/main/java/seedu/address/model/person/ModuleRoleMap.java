@@ -5,6 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.areOfSameSize;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -173,5 +174,22 @@ public class ModuleRoleMap {
         return roles.entrySet().stream()
                 .map(entry -> new ModuleRolePair(entry.getKey(), entry.getValue()))
                 .collect(Collectors.toList());
+    }
+
+    /**
+     * Converts the ModuleRoleMap back into a List<String> of module-role pairs.
+     * If the role is STUDENT, the module code will be returned without the role.
+     * @return List<String> of module-role pairs.
+     */
+    public List<String> toModuleRolePairs() {
+        List<String> moduleRolePairs = new ArrayList<>();
+
+        for (Map.Entry<ModuleCode, RoleType> entry : roles.entrySet()) {
+            ModuleCode moduleCode = entry.getKey();
+            RoleType roleType = entry.getValue();
+            moduleRolePairs.add(moduleCode + "-" + roleType);
+        }
+
+        return moduleRolePairs;
     }
 }
