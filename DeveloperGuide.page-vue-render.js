@@ -254,13 +254,13 @@ with(this){return _c('p',[_c('strong',[_v("Use case: UC02 Search contact(s)")])]
 with(this){return _c('p',[_c('strong',[_v("MSS")])])}
 },function anonymous(
 ) {
-with(this){return _c('ol',[_c('li',[_c('p',[_v("User requests to search for contact(s) by inputting one or more of the following:")]),_v(" "),_c('ul',[_c('li',[_v("The name of the contact,")]),_v(" "),_c('li',[_v("The module code (optionally including the role), or")]),_v(" "),_c('li',[_v("The category of the issue")])])]),_v(" "),_c('li',[_c('p',[_v("ContactCS shows a list of matching contacts")]),_v(" "),_c('p',[_v("Use case ends.")])])])}
+with(this){return _c('ol',[_c('li',[_c('p',[_v("User requests to search for contact(s) by inputting one or more of the following:")]),_v(" "),_c('ul',[_c('li',[_v("The name of the contact,")]),_v(" "),_c('li',[_v("The module code (optionally including the role), or")]),_v(" "),_c('li',[_v("A combination of both")])])]),_v(" "),_c('li',[_c('p',[_v("ContactCS shows a list of matching contacts")]),_v(" "),_c('p',[_v("Use case ends.")])])])}
 },function anonymous(
 ) {
 with(this){return _c('p',[_c('strong',[_v("Extensions")])])}
 },function anonymous(
 ) {
-with(this){return _c('ul',[_c('li',[_c('p',[_v("1a. Necessary input such as module code, or category of the issue is missing.")]),_v(" "),_c('ul',[_c('li',[_c('p',[_v("1a1. ContactCS requests the user to provide the required information")])]),_v(" "),_c('li',[_c('p',[_v("1a2. User enters new input")])]),_v(" "),_c('li',[_c('p',[_v("Steps 1a1 - 1a2 are repeated until all required fields in the input are complete")]),_v(" "),_c('p',[_v("Use case resumes from step 2.")])])])]),_v(" "),_c('li',[_c('p',[_v("1b. The given format is invalid.")]),_v(" "),_c('ul',[_c('li',[_c('p',[_v("1b1. ContactCS requests the user to provide the correct format and shows the valid command format")])]),_v(" "),_c('li',[_c('p',[_v("1b2. User enters new input")])]),_v(" "),_c('li',[_c('p',[_v("Steps 1b1 - 1b2 are repeated until the format for the entered input is correct")]),_v(" "),_c('p',[_v("Use case resumes from step 2.")])])])]),_v(" "),_c('li',[_c('p',[_v("1c. No matching contacts found.")]),_v(" "),_c('ul',[_c('li',[_c('p',[_v("1c1. ContactCS displays a message to the user saying that there is no matching contacts found")]),_v(" "),_c('p',[_v("Use case ends.")])])])])])}
+with(this){return _c('ul',[_c('li',[_c('p',[_v("1a. Necessary input of at least one keyword is missing.")]),_v(" "),_c('ul',[_c('li',[_c('p',[_v("1a1. ContactCS requests the user to input keyword")])]),_v(" "),_c('li',[_c('p',[_v("1a2. User enters new input")])]),_v(" "),_c('li',[_c('p',[_v("Steps 1a1 - 1a2 are repeated until all required fields in the input are complete")]),_v(" "),_c('p',[_v("Use case resumes from step 2.")])])])]),_v(" "),_c('li',[_c('p',[_v("1b. The input format is invalid.")]),_v(" "),_c('ul',[_c('li',[_c('p',[_v("1b1. ContactCS requests the user to provide the correct format and shows correct syntax, example")])]),_v(" "),_c('li',[_c('p',[_v("1b2. User enters new input")])]),_v(" "),_c('li',[_c('p',[_v("Steps 1b1 - 1b2 are repeated until the format for the entered input is correct")]),_v(" "),_c('p',[_v("Use case resumes from step 2.")])])])]),_v(" "),_c('li',[_c('p',[_v("1c. No matching contacts found.")]),_v(" "),_c('ul',[_c('li',[_c('p',[_v("1c1. ContactCS displays a message to the user saying that there is no matching contacts found")]),_v(" "),_c('p',[_v("Use case ends.")])])])])])}
 },function anonymous(
 ) {
 with(this){return _c('p',[_c('a',{attrs:{"name":"uc03"}})])}
@@ -287,7 +287,7 @@ with(this){return _c('p',[_c('strong',[_v("Use case: UC04 Delete a person")])])}
 with(this){return _c('p',[_c('strong',[_v("MSS")])])}
 },function anonymous(
 ) {
-with(this){return _c('ol',[_c('li',[_c('p',[_v("User requests to "),_c('a',{attrs:{"href":"#uc03"}},[_v("list (UC03)")]),_v(" the contacts or "),_c('a',{attrs:{"href":"#uc02"}},[_v("search (UC02)")]),_v(" for contact(s)")])]),_v(" "),_c('li',[_c('p',[_v("User requests to delete a specific person in the list")])]),_v(" "),_c('li',[_c('p',[_v("ContactCS deletes the person")]),_v(" "),_c('p',[_v("Use case ends.")])])])}
+with(this){return _c('ol',[_c('li',[_c('p',[_v("User requests to "),_c('a',{attrs:{"href":"#uc03"}},[_v("list (UC03)")]),_v(" the contacts or "),_c('a',{attrs:{"href":"#uc02"}},[_v("search (UC02)")]),_v(" for contact(s)")])]),_v(" "),_c('li',[_c('p',[_v("User requests to delete a person or multiple persons in the list")])]),_v(" "),_c('li',[_c('p',[_v("ContactCS deletes the person(s)")]),_v(" "),_c('p',[_v("Use case ends.")])])])}
 },function anonymous(
 ) {
 with(this){return _c('p',[_c('strong',[_v("Extensions")])])}
@@ -455,6 +455,6 @@ with(this){return _c('h3',{attrs:{"id":"saving-data"}},[_v("Saving data"),_c('a'
 with(this){return _c('ol',[_c('li',[_c('p',[_v("Dealing with missing/corrupted data files")]),_v(" "),_c('ol',[_c('li',[_c('em',[_v("{explain how to simulate a missing/corrupted file, and the expected behavior}")])])])]),_v(" "),_c('li',[_c('p',[_c('em',[_v("{ more test cases …​ }")])])])])}
 },function anonymous(
 ) {
-with(this){return _c('footer',[_c('div',{staticClass:"text-center"},[_c('small',[_v("["),_c('span',[_c('strong',[_v("Powered by")])]),_v(" "),_c('img',{attrs:{"src":"https://markbind.org/favicon.ico","width":"30"}}),_v(" "),_c('a',{attrs:{"href":"https://markbind.org/"}},[_v("MarkBind 5.5.3")]),_v(", generated on Tue, 22 Oct 2024, 22:27:06 GMT+8]")])])])}
+with(this){return _c('footer',[_c('div',{staticClass:"text-center"},[_c('small',[_v("["),_c('span',[_c('strong',[_v("Powered by")])]),_v(" "),_c('img',{attrs:{"src":"https://markbind.org/favicon.ico","width":"30"}}),_v(" "),_c('a',{attrs:{"href":"https://markbind.org/"}},[_v("MarkBind 5.5.3")]),_v(", generated on Tue, 22 Oct 2024, 23:54:04 GMT+8]")])])])}
 }];
   
