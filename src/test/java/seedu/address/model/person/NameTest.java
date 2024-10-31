@@ -29,6 +29,44 @@ public class NameTest {
         assertFalse(Name.isValidName(" ")); // spaces only
         assertFalse(Name.isValidName("^")); // only non-alphanumeric characters
         assertFalse(Name.isValidName("peter*")); // contains non-alphanumeric characters
+
+        // '-' should be mid-word
+        assertFalse(Name.isValidName("-peter"));          // start of first word
+        assertFalse(Name.isValidName("peter-"));          // end of first word
+        assertFalse(Name.isValidName("peter -tan"));      // start of nonfirst word
+        assertFalse(Name.isValidName("peter tan-"));      // end of nonfirst word
+        assertFalse(Name.isValidName("peter tan--lee"));  // consecutive dashes
+        assertFalse(Name.isValidName("-"));
+
+        // ',' should be end-word, and not the first character
+        assertFalse(Name.isValidName(",peter"));       // start of first word
+        assertFalse(Name.isValidName("p,eter"));       // mid of first word
+        assertFalse(Name.isValidName("peter ,tan"));   // start of nonfirst word
+        assertFalse(Name.isValidName("peter t,an"));   // mid of nonfirst word
+        assertFalse(Name.isValidName("peter,, tan"));  // consecutive commas
+        assertFalse(Name.isValidName(","));
+
+        // '/' should only appear in the context of [sSdD]/[oO]
+        assertFalse(Name.isValidName("peter a/o david"));  // mismatch of [sSdD]
+        assertFalse(Name.isValidName("peter s/a david"));  // mismatch of [oO]
+        assertFalse(Name.isValidName("/peter"));           // start of first word
+        assertFalse(Name.isValidName("peter/"));           // end of first word
+        assertFalse(Name.isValidName("peter /tan"));       // start of nonfirst word
+        assertFalse(Name.isValidName("peter tan/"));       // end of nonfirst word
+        assertFalse(Name.isValidName("peter s//o tan"));   // consecutive slashes
+        assertFalse(Name.isValidName("/"));
+
+        // [sSdD]/[oO] should be its own word
+        assertFalse(Name.isValidName("peter as/o david"));   // extra chars before
+        assertFalse(Name.isValidName("peter s/oa david"));   // extra chars after
+        assertFalse(Name.isValidName("peter as/oa david"));  // extra chars before after
+
+        // [sSdD]/[oO] should not be first or last word
+        assertFalse(Name.isValidName("s/o peter david"));    // should not be the first word
+        assertFalse(Name.isValidName("peter david s/o"));    // should not be the last word
+
+        // combination
+        assertFalse(Name.isValidName("peter tan-,"));  // comma should be preceded by alphanumeric
     }
 
     @Test
@@ -39,6 +77,20 @@ public class NameTest {
         assertTrue(Name.isValidName("peter the 2nd")); // alphanumeric characters
         assertTrue(Name.isValidName("Capital Tan")); // with capital letters
         assertTrue(Name.isValidName("David Roger Jackson Ray Jr 2nd")); // long names
+
+        // '-' should be mid-word
+        assertTrue(Name.isValidName("peter tan-lee"));
+        assertTrue(Name.isValidName("peter tan-l-ee"));  // multiple dashes in a word
+
+        // ',' should be end-word, and not the first character
+        assertTrue(Name.isValidName("tan ah kow, peter"));
+        assertTrue(Name.isValidName("tan, ah, kow, peter"));  // multiple commas
+
+        // '/' should only appear in the context of [sSdD]/[oO]
+        assertTrue(Name.isValidName("peter s/o david"));
+        assertTrue(Name.isValidName("peter S/o david"));
+        assertTrue(Name.isValidName("peter s/O david"));
+        assertTrue(Name.isValidName("emily d/o david"));
     }
 
     @Test
