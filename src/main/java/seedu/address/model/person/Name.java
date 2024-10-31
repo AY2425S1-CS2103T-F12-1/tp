@@ -12,11 +12,22 @@ public class Name {
     public static final String MESSAGE_CONSTRAINTS =
             "Names should only contain alphanumeric characters and spaces, and it should not be blank";
 
+    private static final String NAME_FIRST_WORD_REGEX = ""
+        + "(\\p{Alnum}+"              // Starts with alphanumeric
+        + "(?:-\\p{Alnum}+)*,?)";     // Allow mid-word hyphens or trailing comma
+
     /*
      * The first character of the name must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String VALIDATION_REGEX = ""
+        + "^"
+        + NAME_FIRST_WORD_REGEX                // 1st word
+        + "(\\s+("                             // Additional words are separated by a space, then
+        + NAME_FIRST_WORD_REGEX + "|"          // EITHER 1st word
+        + "(?:[sSdD]/[oO])"                    // OR: Allow s/o, d/o, S/O, D/O as non-first words
+        + "))*"                                // Close EITHER/OR, close group, allow 0 or more
+        + "$";                                 // End of the string
 
     public final String fullName;
 
