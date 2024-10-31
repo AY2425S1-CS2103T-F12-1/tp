@@ -24,9 +24,9 @@ public class Name {
         + "^"
         + NAME_FIRST_WORD_REGEX                // 1st word
         + "(\\s+("                             // Additional words are separated by a space, then
-        + NAME_FIRST_WORD_REGEX + "|"          // EITHER 1st word
-        + "(?:[sSdD]/[oO])"                    // OR: Allow s/o, d/o, S/O, D/O as non-first words
-        + "))*"                                // Close EITHER/OR, close group, allow 0 or more
+        + NAME_FIRST_WORD_REGEX + "|"          // (either: 1st word |
+        + "(?:[sSdD]/[oO]))"                   // or: Allow s/o, d/o, S/O, D/O as non-first words)
+        + ")*"                                 // Close group, allow 0 or more
         + "$";                                 // End of the string
 
     public final String fullName;
