@@ -23,12 +23,12 @@ public class Name {
      */
     public static final String VALIDATION_REGEX = ""
         + "^"
-        + NAME_FIRST_WORD_REGEX                // 1st word
-        + "(\\s+("                             // Additional words are separated by a space, then
-        + NAME_FIRST_WORD_REGEX + "|"          // (either: 1st word |
-        + "(?:[sSdD]/[oO]))"                   // or: Allow s/o, d/o, S/O, D/O as non-first words)
-        + ")*"                                 // Close group, allow 0 or more
-        + "$";                                 // End of the string
+        + NAME_FIRST_WORD_REGEX                                // 1st word
+        + "(\\s+("                                             // Additional words are separated by a space, then
+        + NAME_FIRST_WORD_REGEX + "|"                          // (either: 1st word |
+        + "(?:[sSdD]/[oO]\\s+" + NAME_FIRST_WORD_REGEX + "))"  // or: Allow s/o, d/o, S/O, D/O as non-first/non-last words)
+        + ")*"                                                 // Close group, allow 0 or more
+        + "$";                                                 // End of the string
 
     public final String fullName;
 
