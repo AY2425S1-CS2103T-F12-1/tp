@@ -16,8 +16,8 @@ public class Name {
 
 
     private static final String NAME_FIRST_WORD_REGEX = ""
-        + "(\\p{Alnum}+"              // Starts with alphanumeric
-        + "(?:-\\p{Alnum}+)*,?)";     // Allow mid-word hyphens or trailing comma
+        + "(\\p{Alnum}+" // Starts with alphanumeric
+        + "(?:-\\p{Alnum}+)*,?)"; // Allow mid-word hyphens or trailing comma
 
     /**
      * Matches a name string where the first word is alphanumeric with optional hyphens and trailing comma.
@@ -25,14 +25,12 @@ public class Name {
      * Entire string must follow this structure from start to end.
      */
     public static final String VALIDATION_REGEX = ""
-        + "^"
-        + NAME_FIRST_WORD_REGEX                                // 1st word
-        + "(\\s+("                                             // Additional words are separated by a space, then
-        + NAME_FIRST_WORD_REGEX + "|"                          // (either: 1st word |
-        + "(?:[sSdD]/[oO]\\s+" + NAME_FIRST_WORD_REGEX + "))"  // or: Allow s/o, d/o, S/O, D/O as
-                                                               // non-first/non-last words)
-        + ")*"                                                 // Close group, allow 0 or more
-        + "$";                                                 // End of the string
+        + "^" + NAME_FIRST_WORD_REGEX // 1st word
+        + "(\\s+(" // Additional words are separated by a space, then
+        + NAME_FIRST_WORD_REGEX + "|" // (either: 1st word |
+        + "(?:[sSdD]/[oO]\\s+" + NAME_FIRST_WORD_REGEX + "))" // or: Allow s/o as non-first/non-last word)
+        + ")*" // Close group, allow 0 or more
+        + "$";
 
     public final String fullName;
 
