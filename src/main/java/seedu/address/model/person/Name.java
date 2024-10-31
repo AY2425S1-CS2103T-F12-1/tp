@@ -11,8 +11,8 @@ public class Name {
 
     public static final String MESSAGE_CONSTRAINTS =
         "Names can only contain letters, numbers, spaces, hyphens within words, and commas at the end of words. "
-      + "They should not start or end with a hyphen or comma, and names cannot be blank. "
-      + "Additionally, 's/o' or 'd/o' (or uppercase versions) are allowed in the middle of a name.";
+        + "They should not start or end with a hyphen or comma, and names cannot be blank. "
+        + "Additionally, 's/o' or 'd/o' (or uppercase versions) are allowed in the middle of a name.";
 
 
     private static final String NAME_FIRST_WORD_REGEX = ""
@@ -29,7 +29,8 @@ public class Name {
         + NAME_FIRST_WORD_REGEX                                // 1st word
         + "(\\s+("                                             // Additional words are separated by a space, then
         + NAME_FIRST_WORD_REGEX + "|"                          // (either: 1st word |
-        + "(?:[sSdD]/[oO]\\s+" + NAME_FIRST_WORD_REGEX + "))"  // or: Allow s/o, d/o, S/O, D/O as non-first/non-last words)
+        + "(?:[sSdD]/[oO]\\s+" + NAME_FIRST_WORD_REGEX + "))"  // or: Allow s/o, d/o, S/O, D/O as
+                                                               // non-first/non-last words)
         + ")*"                                                 // Close group, allow 0 or more
         + "$";                                                 // End of the string
 
