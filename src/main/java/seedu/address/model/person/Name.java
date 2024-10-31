@@ -16,9 +16,10 @@ public class Name {
         + "(\\p{Alnum}+"              // Starts with alphanumeric
         + "(?:-\\p{Alnum}+)*,?)";     // Allow mid-word hyphens or trailing comma
 
-    /*
-     * The first character of the name must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
+    /**
+     * Matches a name string where the first word is alphanumeric with optional hyphens and trailing comma.
+     * Subsequent words are separated by spaces and can be either similar words or "s/o", "d/o", "S/O", "D/O".
+     * Entire string must follow this structure from start to end.
      */
     public static final String VALIDATION_REGEX = ""
         + "^"
