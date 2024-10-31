@@ -10,7 +10,10 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Name {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Names should only contain alphanumeric characters and spaces, and it should not be blank";
+        "Names can only contain letters, numbers, spaces, hyphens within words, and commas at the end of words. "
+      + "They should not start or end with a hyphen or comma, and names cannot be blank. "
+      + "Additionally, 's/o' or 'd/o' (or uppercase versions) are allowed in the middle of a name.";
+
 
     private static final String NAME_FIRST_WORD_REGEX = ""
         + "(\\p{Alnum}+"              // Starts with alphanumeric
