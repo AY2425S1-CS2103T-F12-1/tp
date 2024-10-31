@@ -98,6 +98,8 @@ Format: `help`
 Adds a person to the address book.
 
 Format: `add n/NAME (p/PHONE_NUMBER | e/EMAIL) (r/MODULECODE[-ROLETYPE])+ [a/ADDRESS] [t/TAG]+`
+
+* `NAME` refers to the name of a person. Refer to the [input format section](#input-format) to find out more.
 * `MODULECODE` refers to a module code of a NUS module (e.g. CS1101S, MA1521)
 * `ROLETYPE` refers to one of the following: `student`, `ta`, `tutor`, `prof`, `professor`.
 * The `r/MODULECODE[-ROLETYPE]` parameter means that the person has the role for this module (e.g. `r/CS1101S-student` means that the person is a student of CS1101S).
@@ -276,6 +278,19 @@ Furthermore, certain edits can cause the AddressBook to behave in unexpected way
 ### Archiving data files `[coming in v2.0]`
 
 _Details coming soon ..._
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Input format
+
+### Name
+
+A name is a space-separated string of words.
+
+- Words can contain alphanumeric characters (letters and numbers).
+- Hyphens `-` are allowed within a word (not at the start or end) but cannot appear consecutively.
+- A comma `,` is allowed only at the end of a word.
+- Apart from the above criteria, `s/o` and `d/o` (or any capitalized form) are valid words, but they cannot be the first or last word of the name.
 
 --------------------------------------------------------------------------------------------------------------------
 
