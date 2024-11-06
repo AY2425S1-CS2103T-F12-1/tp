@@ -115,7 +115,7 @@
         "listing-all-persons-list": "Listing all persons : list",
         "editing-a-person-edit": "Editing a person : edit",
         "locating-persons-find": "Locating persons: find",
-        "deleting-a-person-or-multiple-persons-delete": "Deleting a person or multiple persons: delete",
+        "deleting-persons-delete": "Deleting persons: delete",
         "clearing-all-entries-clear": "Clearing all entries : clear",
         "undo-latest-change-to-contact-data-undo": "Undo latest change to contact data: undo",
         "exiting-the-program-exit": "Exiting the program : exit",
