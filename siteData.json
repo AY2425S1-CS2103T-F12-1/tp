@@ -128,6 +128,10 @@
         "name-field": "NAME field",
         "concept-of-a-phone-number": "Concept of a phone number",
         "phone-number-field": "PHONE_NUMBER field",
+        "module-role-field": "MODULE_ROLE field",
+        "address-field": "ADDRESS field",
+        "tag-field": "TAG field",
+        "description-field": "DESCRIPTION field",
         "faq": "FAQ",
         "known-issues": "Known issues",
         "command-summary": "Command summary"
