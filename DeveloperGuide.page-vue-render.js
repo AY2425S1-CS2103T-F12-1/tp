@@ -11,7 +11,7 @@ with(this){return _c('h1',{attrs:{"id":"contactcs-developer-guide"}},[_v("Contac
 with(this){return _c('h2',{attrs:{"id":"acknowledgements"}},[_c('strong',[_v("Acknowledgements")]),_c('a',{staticClass:"fa fa-anchor",attrs:{"href":"#acknowledgements","onclick":"event.stopPropagation()"}})])}
 },function anonymous(
 ) {
-with(this){return _c('p',[_c('em',[_v("{ list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well }")])])}
+with(this){return _c('ol',[_c('li',[_v("The Undo/Redo features of ContactCS are implemented with references to the "),_c('code',{pre:true,attrs:{"class":"hljs inline no-lang"}},[_v("[Proposed] Undo/redo feature")]),_v(" section in the\n"),_c('a',{attrs:{"href":"https://se-education.org/addressbook-level3/DeveloperGuide.html"}},[_v("original AB3 Developer Guide")]),_v(".\nDuring the development process of these two features, the codes are written by our own developers, based on the suggested\narchitectural design and APIs mentioned in the above documentation.")])])}
 },function anonymous(
 ) {
 with(this){return _c('h2',{attrs:{"id":"setting-up-getting-started"}},[_c('strong',[_v("Setting up, getting started")]),_c('a',{staticClass:"fa fa-anchor",attrs:{"href":"#setting-up-getting-started","onclick":"event.stopPropagation()"}})])}
@@ -467,6 +467,6 @@ with(this){return _c('p',[_c('a',{attrs:{"href":"/tp/images/Planned_Enhancements
 with(this){return _c('p',[_c('a',{attrs:{"href":"/tp/images/Planned_Enhancements_Screenshots/Point2_RemoveEmailExample.png","target":"_self"}},[_c('img',{staticClass:"img-fluid",attrs:{"src":"/tp/images/Planned_Enhancements_Screenshots/Point2_RemoveEmailExample.png","alt":"point2_screenshot_remove_email_example"}})]),_v("\n(As shown in the screenshot, "),_c('code',{pre:true,attrs:{"class":"hljs inline no-lang"}},[_v("edit 9 e/")]),_v(" as an attempt to remove email from ninth person in the current list fails, because empty email field for edit command is not allowed.\nSimilar issues happen when removing phone using "),_c('code',{pre:true,attrs:{"class":"hljs inline no-lang"}},[_v("edit 9 p/")]),_v(" and removing address using "),_c('code',{pre:true,attrs:{"class":"hljs inline no-lang"}},[_v("edit 9 a/")]),_v(".)")])}
 },function anonymous(
 ) {
-with(this){return _c('footer',[_c('div',{staticClass:"text-center"},[_c('small',[_v("["),_c('span',[_c('strong',[_v("Powered by")])]),_v(" "),_c('img',{attrs:{"src":"https://markbind.org/favicon.ico","width":"30"}}),_v(" "),_c('a',{attrs:{"href":"https://markbind.org/"}},[_v("MarkBind 5.5.3")]),_v(", generated on Mon, 11 Nov 2024, 21:30:21 GMT+8]")])])])}
+with(this){return _c('footer',[_c('div',{staticClass:"text-center"},[_c('small',[_v("["),_c('span',[_c('strong',[_v("Powered by")])]),_v(" "),_c('img',{attrs:{"src":"https://markbind.org/favicon.ico","width":"30"}}),_v(" "),_c('a',{attrs:{"href":"https://markbind.org/"}},[_v("MarkBind 5.5.3")]),_v(", generated on Mon, 11 Nov 2024, 21:39:31 GMT+8]")])])])}
 }];
   
