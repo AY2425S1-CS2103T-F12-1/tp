@@ -470,6 +470,6 @@ with(this){return _c('p',[_c('a',{attrs:{"href":"/tp/images/Planned_Enhancements
 with(this){return _c('p',[_c('a',{attrs:{"href":"/tp/images/Planned_Enhancements_Screenshots/Point1_2.png","target":"_self"}},[_c('img',{staticClass:"img-fluid",attrs:{"src":"/tp/images/Planned_Enhancements_Screenshots/Point1_2.png","alt":"point1 screenshot"}})]),_v("\n(As show in the screenshot, "),_c('code',{pre:true,attrs:{"class":"hljs inline no-lang"}},[_v("find r/CS")]),_v(" results in error messages because construction of search query requires exact module code to work.)")])}
 },function anonymous(
 ) {
-with(this){return _c('footer',[_c('div',{staticClass:"text-center"},[_c('small',[_v("["),_c('span',[_c('strong',[_v("Powered by")])]),_v(" "),_c('img',{attrs:{"src":"https://markbind.org/favicon.ico","width":"30"}}),_v(" "),_c('a',{attrs:{"href":"https://markbind.org/"}},[_v("MarkBind 5.5.3")]),_v(", generated on Mon, 11 Nov 2024, 11:50:39 GMT+8]")])])])}
+with(this){return _c('footer',[_c('div',{staticClass:"text-center"},[_c('small',[_v("["),_c('span',[_c('strong',[_v("Powered by")])]),_v(" "),_c('img',{attrs:{"src":"https://markbind.org/favicon.ico","width":"30"}}),_v(" "),_c('a',{attrs:{"href":"https://markbind.org/"}},[_v("MarkBind 5.5.3")]),_v(", generated on Mon, 11 Nov 2024, 13:03:02 GMT+8]")])])])}
 }];
   
