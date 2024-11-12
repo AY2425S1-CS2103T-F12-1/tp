@@ -144,6 +144,19 @@ Alerts you to potential issues or problems that may arise.
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </box>
 
+<box type="info" seamless>
+
+**Info: Notes about the command history**<br>
+The **Command History Window** only displays commands that directly modify the contact list, including:
+* `add` - Adds a new contact.
+* `edit` - Edits details of an existing contact.
+* `delete` - Removes specified contacts.
+* `clear` - Clears all contacts from the list.
+
+Commands that do not alter the contact data, such as `list`, `find`, `help`, and `exit`, are **not** shown in the command history window.
+This helps keep the command history focused on actions that impact the contact list.
+</box>
+
 ### Viewing help: `help`
 
 Help command supports two input formats which allows for more flexibility when
