@@ -488,6 +488,6 @@ with(this){return _c('ul',[_c('li',[_v("A contact can be designated as a Profess
 with(this){return _c('ol',{attrs:{"start":"5"}},[_c('li',[_c('strong',[_v("Allows command navigation using up and down arrows.")]),_v(" Currently, the user has to type the command from scratch if he/she wants to execute a previous command again.\nThis can be very troublesome if the user wants to execute the same command multiple times, or if the user wants to execute a similar command to the previous one.\nWe plan to allow the user to navigate through the command history using the up and down arrows.")])])}
 },function anonymous(
 ) {
-with(this){return _c('footer',[_c('div',{staticClass:"text-center"},[_c('small',[_v("["),_c('span',[_c('strong',[_v("Powered by")])]),_v(" "),_c('img',{attrs:{"src":"https://markbind.org/favicon.ico","width":"30"}}),_v(" "),_c('a',{attrs:{"href":"https://markbind.org/"}},[_v("MarkBind 5.5.3")]),_v(", generated on Mon, 11 Nov 2024, 23:56:14 GMT+8]")])])])}
+with(this){return _c('footer',[_c('div',{staticClass:"text-center"},[_c('small',[_v("["),_c('span',[_c('strong',[_v("Powered by")])]),_v(" "),_c('img',{attrs:{"src":"https://markbind.org/favicon.ico","width":"30"}}),_v(" "),_c('a',{attrs:{"href":"https://markbind.org/"}},[_v("MarkBind 5.5.3")]),_v(", generated on Tue, 12 Nov 2024, 9:10:05 GMT+8]")])])])}
 }];
   
